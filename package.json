@@ -25,7 +25,10 @@
     "start": "start-runner -p re-start/presets/typescript",
     "build": "npm start build",
     "dev": "npm start dev",
-    "test": "npm start test"
+    "test": "npm start test",
+    "tdd": "npm start tdd",
+    "prepush": "npm start prepush",
+    "prepublish": "npm start build"
   },
   "release": {
     "verifyConditions": "condition-circle"
