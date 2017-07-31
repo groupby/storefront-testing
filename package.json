@@ -1,0 +1,65 @@
+{
+  "name": "@storefront/testing",
+  "version": "1.0.0",
+  "description": "Test modules for working with StoreFront components",
+  "keywords": [
+    "storefront"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/groupby/storefront-testing.git"
+  },
+  "bugs": {
+    "url": "https://github.com/groupby/storefront-testing/issues"
+  },
+  "homepage": "https://github.com/groupby/storefront-testing#readme",
+  "author": "Ben Teichman <ben.teichman@groupbyinc.com>",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist/",
+    "src/"
+  ],
+  "scripts": {
+    "start": "start-runner -p re-start/presets/typescript",
+    "build": "npm start build",
+    "dev": "npm start dev",
+    "test": "npm start test"
+  },
+  "release": {
+    "verifyConditions": "condition-circle"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    },
+    "restart": {
+      "testFiles": [
+        "test/bootstrap.ts",
+        "test/unit/**/*.ts"
+      ]
+    }
+  },
+  "dependencies": {
+    "@types/chai": "^4.0.1",
+    "@types/node": "^8.0.17",
+    "@types/sinon": "^2.3.3",
+    "@types/sinon-chai": "^2.7.28",
+    "chai": "^4.1.0",
+    "mocha-suite": "^1.0.11",
+    "mock-require": "^2.0.2",
+    "sinon": "^2.4.1",
+    "sinon-chai": "^2.12.0"
+  },
+  "devDependencies": {
+    "condition-circle": "^1.5.0",
+    "cz-conventional-changelog": "^2.0.0",
+    "husky": "^0.14.3",
+    "re-start": "^1.14.8",
+    "start-simple-cli": "^4.1.1",
+    "tslint": "^5.5.0",
+    "tslint-config-groupby": "^1.0.0",
+    "typescript": "^2.4.2"
+  }
+}
