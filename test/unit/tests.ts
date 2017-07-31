@@ -11,12 +11,12 @@ describe('tests()', () => {
   const primed = tests(<any>{ expect });
 
   describe('itShouldBeConfigurable', () => {
-    primed.itShouldBeConfigurable({ [TAG_DESCRIPTION]: { metadata: { configurable: true } } });
+    primed.itShouldBeConfigurable(<any>{ [TAG_DESCRIPTION]: { metadata: { configurable: true } } });
   });
 
   describe('itShouldHaveAlias', () => {
     const alias = 'myAlias';
 
-    primed.itShouldHaveAlias({ [TAG_DESCRIPTION]: { metadata: { alias } } }, alias);
+    primed.itShouldHaveAlias(<any>{ [TAG_DESCRIPTION]: { metadata: { alias } } }, alias);
   });
 });

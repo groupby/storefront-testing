@@ -1,5 +1,5 @@
-import expectations from './expectations';
-import tests from './tests';
+import expectations, { Expectations } from './expectations';
+import tests, { Tests } from './tests';
 import { sinon, suite, Chai } from './utils';
 
 namespace Suite {
@@ -9,7 +9,9 @@ namespace Suite {
     stub: sinon.SinonStubStatic;
   }
 
-  export const extendable = <T extends Utils>(extend: (utils: any) => T) =>
+  export type FullUtils = Expectations & Tests & Utils;
+
+  export const extendable = <T extends FullUtils>(extend: (utils: FullUtils) => T) =>
     (chai: Chai.ChaiStatic) =>
       suite<T, any>((userTests) => {
         let sandbox: sinon.SinonSandbox;
