@@ -9,10 +9,18 @@ export default ({ expect }: Suite.Utils): Tests => ({
     });
   },
 
-  itShouldHaveAlias: (clazz, expectedValue) => {
-    describe('@alias', () => {
-      it('should set alias', () => {
-        expect(clazz[Symbol.for('tag_description')].metadata.alias).to.eq(expectedValue);
+  itShouldProvideAlias: (clazz, aliasName) => {
+    describe('@provide', () => {
+      it('should provide alias', () => {
+        expect(clazz[Symbol.for('tag_description')].metadata.provides).to.have.ownProperty(aliasName);
+      });
+    });
+  },
+
+  itShouldConsumeAlias: (clazz, aliasName) => {
+    describe('@consume', () => {
+      it('should consume alias', () => {
+        expect(clazz[Symbol.for('tag_description')].metadata.consumes).to.include(aliasName);
       });
     });
   }
@@ -20,5 +28,6 @@ export default ({ expect }: Suite.Utils): Tests => ({
 
 export interface Tests {
   itShouldBeConfigurable(clazz: { new(): any }): void;
-  itShouldHaveAlias(clazz: { new(): any }, aliasName: string): void;
+  itShouldProvideAlias(clazz: { new(): any }, aliasName: string): void;
+  itShouldConsumeAlias(clazz: { new(): any }, aliasName: string): void;
 }

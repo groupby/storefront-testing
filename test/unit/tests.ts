@@ -14,9 +14,15 @@ describe('tests()', () => {
     primed.itShouldBeConfigurable(<any>{ [TAG_DESCRIPTION]: { metadata: { configurable: true } } });
   });
 
-  describe('itShouldHaveAlias', () => {
+  describe('itShouldProvideAlias', () => {
     const alias = 'myAlias';
 
-    primed.itShouldHaveAlias(<any>{ [TAG_DESCRIPTION]: { metadata: { alias } } }, alias);
+    primed.itShouldProvideAlias(<any>{ [TAG_DESCRIPTION]: { metadata: { provides: { [alias]: null } } } }, alias);
+  });
+
+  describe('itShouldConsumeAlias', () => {
+    const alias = 'myAlias';
+
+    primed.itShouldConsumeAlias(<any>{ [TAG_DESCRIPTION]: { metadata: { consumes: [alias] } } }, alias);
   });
 });
