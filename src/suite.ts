@@ -11,26 +11,27 @@ namespace Suite {
 
   export type FullUtils = Expectations & Tests & Utils;
 
-  export const extendable = <T extends FullUtils>(extend: (utils: FullUtils) => T) =>
-    (chai: Chai.ChaiStatic) =>
-      suite<T, any>((userTests) => {
-        let sandbox: sinon.SinonSandbox;
+  export const extendable = <T extends FullUtils>(extend: (utils: FullUtils) => T) => (chai: Chai.ChaiStatic) =>
+    suite<T, any>((userTests) => {
+      let sandbox: sinon.SinonSandbox;
 
-        beforeEach(() => sandbox = sinon.sandbox.create());
-        afterEach(() => sandbox.restore());
+      beforeEach(() => (sandbox = sinon.createSandbox()));
+      afterEach(() => sandbox.restore());
 
-        const utils = {
-          expect: chai.expect,
-          spy: (...args) => (<any>sandbox.spy)(...args),
-          stub: (...args) => (<any>sandbox.stub)(...args),
-        };
+      const utils = {
+        expect: chai.expect,
+        spy: (...args) => (<any>sandbox.spy)(...args),
+        stub: (...args) => (<any>sandbox.stub)(...args),
+      };
 
-        userTests(extend({
+      userTests(
+        extend({
           ...utils,
           ...expectations(utils),
-          ...tests(utils)
-        }));
-      });
+          ...tests(utils),
+        })
+      );
+    });
 
   export const base = Suite.extendable((_) => _);
 }
