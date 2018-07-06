@@ -4,6 +4,7 @@ import { sinon, suite, Chai } from './utils';
 
 namespace Suite {
   export interface Utils {
+    sinon: sinon.SinonStatic;
     expect: Chai.ExpectStatic;
     spy: sinon.SinonSpyStatic;
     stub: sinon.SinonStubStatic;
@@ -19,6 +20,7 @@ namespace Suite {
       afterEach(() => sandbox.restore());
 
       const utils = {
+        sinon,
         expect: chai.expect,
         spy: (...args) => (<any>sandbox.spy)(...args),
         stub: (...args) => (<any>sandbox.stub)(...args),
